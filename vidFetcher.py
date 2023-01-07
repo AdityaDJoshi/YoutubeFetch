@@ -34,11 +34,14 @@ def fun1():
     f.write(str(response))
     f.close()
 
+# create a file named 'api-key.json' in current directory
+# { "key": "AIzaSyC7hP-7zi5FSsbTrwa2G-NgAB5Hdomz6Ac" }
+
+
 # searching using python requests
-
-
 def fun2():
-    key = "AIzaSyC7hP-7zi5FSsbTrwa2G-NgAB5Hdomz6Ac"
+
+    key = json.load(open('api-key.json'))['key']
     numOfResults = "25"
     searchTerm = "ios"
     publishedAfter = "2023-01-01T06:51:11Z"
