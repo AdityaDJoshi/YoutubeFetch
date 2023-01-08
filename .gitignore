@@ -3,3 +3,5 @@ YOUR_CLIENT_SECRET_FILE.json
 .vscode/settings.json
 api-key.json
 a.py
+*.pyc
+*.pyc

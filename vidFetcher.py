@@ -7,6 +7,8 @@ import json
 scopes = ["https://www.googleapis.com/auth/youtube.force-ssl"]
 
 # The youtube search function provided by google oauthlib
+# requires oauth credentials json downloaded from google developers console
+# rename the file as YOUR_CLIENT_SECRET_FILE
 
 
 def fun1():
@@ -34,11 +36,12 @@ def fun1():
     f.write(str(response))
     f.close()
 
-# create a file named 'api-key.json' in current directory
-# { "key": "AIzaSyC7hP-7zi5FSsbTrwa2G-NgAB5Hdomz6Ac" }
-
-
 # searching using python requests
+
+# create a file named 'api-key.json' in current directory
+# { "key": "key here" }
+
+
 def fun2(numOfResults=25, searchTerm="ios"):
 
     key = json.load(open('api-key.json'))['key']
@@ -47,7 +50,7 @@ def fun2(numOfResults=25, searchTerm="ios"):
     publishedAfter = "2023-01-01T06:51:11Z"
     url = "https://www.googleapis.com/youtube/v3/search?key="+key + \
         "&type=video&part=snippet&maxResults=" + \
-        numOfResults+"&q="+searchTerm+"&publishedAfter="+publishedAfter
+        str(numOfResults)+"&q="+searchTerm+"&publishedAfter="+publishedAfter
     response = requests.get(url)
     print(response.text)
     print("############")
@@ -56,8 +59,3 @@ def fun2(numOfResults=25, searchTerm="ios"):
     with open("response.json", "w") as outfile:
         json.dump(response.json(), outfile)
     return response.json()
-
-
-# if __name__ == "__main__":
-#     main()
-fun2()

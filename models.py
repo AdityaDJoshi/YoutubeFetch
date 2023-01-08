@@ -1,10 +1,8 @@
 from datetime import datetime
 
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask, jsonify
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///vidDB.sqlite3'
-db = SQLAlchemy(app)
+
+db = SQLAlchemy()
 
 
 class vidDB(db.Model):
@@ -22,12 +20,3 @@ class vidDB(db.Model):
         self.publishedDatetime = publishedDatetime
         self.thumbnailURL = thumbnailURL
         self.videoURL = videoURL
-
-
-@app.route('/')
-def add_task():
-    temp = vidDB('yQ8jlAdCZoY', 'Android vs Apple iOS #shorts', "Apple #iphome #apple #techbar #india #android.", datetime.fromisoformat(
-        '2023-01-05T15:40:13Z'[:-1] + '+00:00'), "https://i.ytimg.com/vi/yQ8jlAdCZPY/default.jpg", "https://youtube.com")
-    db.session.add(temp)
-    db.session.commit()
-    return jsonify({'status': 'ok'})
