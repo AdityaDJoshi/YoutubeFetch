@@ -1,0 +1,4 @@
+redis-server
+celery beat -A app.celery --schedule /tmp/celerybeat-schedule --loglevel=INFO --pidfile=/tmp/celerybeat.pid
+celery worker -A app.celery --loglevel=INFO
+flask --app app/__init__.py run

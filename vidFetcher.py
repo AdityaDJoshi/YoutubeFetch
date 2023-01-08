@@ -39,11 +39,11 @@ def fun1():
 
 
 # searching using python requests
-def fun2():
+def fun2(numOfResults=25, searchTerm="ios"):
 
     key = json.load(open('api-key.json'))['key']
-    numOfResults = "25"
-    searchTerm = "ios"
+    # numOfResults = "25"
+    # searchTerm = "ios"
     publishedAfter = "2023-01-01T06:51:11Z"
     url = "https://www.googleapis.com/youtube/v3/search?key="+key + \
         "&type=video&part=snippet&maxResults=" + \
@@ -55,6 +55,7 @@ def fun2():
 
     with open("response.json", "w") as outfile:
         json.dump(response.json(), outfile)
+    return response.json()
 
 
 # if __name__ == "__main__":
